@@ -1,0 +1,194 @@
+/* Fee Management invoice / receipt document — scoped to the `fdoc-` prefix so
+   nothing here can affect other modules or the shared Fee UI components. */
+
+.fdoc {
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.fdoc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--divider-color);
+}
+
+.fdoc-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+}
+
+.fdoc-head p {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-dark-sub);
+}
+
+.fdoc-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.fdoc-badge-kind {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fdoc-receipt .fdoc-badge-kind {
+  border-style: dashed;
+}
+
+.fdoc-badge-status {
+  font-size: 0.75rem;
+  color: var(--text-dark-sub);
+}
+
+.fdoc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.fdoc-col h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: 0.25rem;
+}
+
+.fdoc-entry {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.12rem 0;
+  font-size: 0.8rem;
+}
+
+.fdoc-entry span {
+  color: var(--text-dark-sub);
+}
+
+.fdoc-entry strong {
+  font-weight: 600;
+  text-align: right;
+  word-break: break-word;
+}
+
+.fdoc-section {
+  margin: 1.1rem 0 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dark-sub);
+}
+
+.fdoc-table-wrap {
+  overflow-x: auto;
+}
+
+.fdoc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fdoc-table th,
+.fdoc-table td {
+  border: 1px solid var(--divider-color);
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.fdoc-table th {
+  background: var(--input-bg);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dark-sub);
+}
+
+.fdoc-table .fdoc-num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.fdoc-totals {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.fdoc-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-width: 260px;
+  font-size: 0.85rem;
+}
+
+.fdoc-total span {
+  color: var(--text-dark-sub);
+}
+
+.fdoc-total-strong {
+  border-top: 1px solid var(--divider-color);
+  margin-top: 0.25rem;
+  padding-top: 0.35rem;
+  font-size: 0.98rem;
+}
+
+.fdoc-total-strong span,
+.fdoc-total-strong strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.fdoc-notes {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-dark-sub);
+}
+
+.fdoc-notes p {
+  margin: 0.15rem 0;
+}
+
+.fdoc-foot {
+  margin-top: 1.2rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--divider-color);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.72rem;
+  color: var(--text-dark-sub);
+}
+
+@media (max-width: 900px) {
+  .fdoc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fdoc-foot {
+    flex-direction: column;
+  }
+}

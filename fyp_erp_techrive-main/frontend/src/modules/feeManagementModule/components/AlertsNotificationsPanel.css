@@ -1,0 +1,527 @@
+/* Module 6 — Alerts & Notifications (scoped presentation only) */
+
+.fee-notif-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fee-notif-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fee-notif-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.fee-notif-title-row h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-notif-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(29, 111, 191, 0.14), rgba(29, 111, 191, 0.04));
+  border: 1px solid rgba(29, 111, 191, 0.18);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.fee-notif-desc {
+  margin: 0;
+  color: var(--text-dark-sub);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  max-width: 52rem;
+}
+
+.fee-notif-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.fee-notif-stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(160deg, rgba(29, 111, 191, 0.07), transparent 65%), var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.fee-notif-stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.fee-notif-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.fee-notif-stat-value {
+  display: block;
+  font-size: 1.55rem;
+  font-weight: 750;
+  line-height: 1.1;
+  color: var(--text-dark);
+}
+
+.fee-notif-stat-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark-sub);
+}
+
+.fee-notif-provider-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+}
+
+.fee-notif-provider-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-notif-provider-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-dark-sub);
+  line-height: 1.5;
+}
+
+.fee-notif-provider-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.fee-notif-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.fee-notif-pill--ok {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.fee-notif-pill--warn {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.fee-notif-pill--muted {
+  background: var(--card-bg);
+  color: var(--text-dark-sub);
+  border-color: var(--input-border);
+}
+
+.fee-notif-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid var(--divider-color);
+  overflow-x: auto;
+}
+
+.fee-notif-tabs-row .fee-segment {
+  flex-shrink: 0;
+}
+
+.fee-notif-tabs-row .fee-segment button {
+  padding: 0.62rem 1rem;
+  white-space: nowrap;
+}
+
+.fee-notif-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fee-notif-settings-grid .panel-card {
+  margin: 0;
+  padding: 1.15rem 1.2rem;
+}
+
+.fee-notif-settings-grid .panel-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-notif-settings-grid .panel-card .fee-notif-card-desc {
+  margin: 0 0 1rem;
+  font-size: 0.78rem;
+  color: var(--text-dark-sub);
+  line-height: 1.45;
+}
+
+.fee-notif-global-card {
+  margin-bottom: 0;
+}
+
+.fee-notif-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.fee-notif-toggle:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.fee-notif-toggle input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.15rem;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.fee-notif-toggle-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.fee-notif-toggle-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.fee-notif-toggle-desc {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.76rem;
+  color: var(--text-dark-sub);
+  line-height: 1.45;
+}
+
+.fee-notif-field-block {
+  padding: 0.85rem 0 0.25rem;
+  border-top: 1px solid var(--divider-color);
+  margin-top: 0.25rem;
+}
+
+.fee-notif-channel-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.35rem;
+}
+
+.fee-notif-save-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.25rem;
+}
+
+.fee-notif-save-bar .fee-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 9.5rem;
+  justify-content: center;
+}
+
+.fee-notif-history-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.fee-notif-history-toolbar .fee-select {
+  width: auto;
+  min-width: 11rem;
+}
+
+.fee-notif-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.fee-notif-status--sent {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.fee-notif-status--pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.fee-notif-status--failed {
+  background: var(--error-bg);
+  color: var(--error);
+  border-color: var(--error-border);
+}
+
+.fee-notif-status--skipped {
+  background: var(--input-bg);
+  color: var(--text-dark-sub);
+  border-color: var(--input-border);
+}
+
+.fee-notif-automation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fee-notif-action-card {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+}
+
+.fee-notif-action-card h4 {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-notif-action-card p {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dark-sub);
+  line-height: 1.5;
+}
+
+.fee-notif-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.fee-notif-code-block {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px dashed var(--input-border);
+  background: var(--card-bg);
+  font-size: 0.78rem;
+  color: var(--text-dark-sub);
+  line-height: 1.7;
+}
+
+.fee-notif-code-block code {
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.fee-notif-note {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background: var(--card-bg);
+  font-size: 0.8rem;
+  color: var(--text-dark-sub);
+  line-height: 1.55;
+}
+
+.fee-notif-run-result {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(29, 111, 191, 0.22);
+  background: linear-gradient(160deg, rgba(29, 111, 191, 0.06), transparent 70%), var(--card-bg);
+}
+
+.fee-notif-run-result--error {
+  border-color: rgba(180, 50, 50, 0.35);
+  background: linear-gradient(160deg, rgba(180, 50, 50, 0.07), transparent 70%), var(--card-bg);
+}
+
+.fee-notif-run-result h4 {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.fee-notif-run-result-msg {
+  margin: 0 0 0.75rem;
+  font-size: 0.84rem;
+  color: var(--text-dark-sub);
+  line-height: 1.5;
+}
+
+.fee-notif-run-result-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-dark-sub);
+  line-height: 1.45;
+}
+
+.fee-notif-run-counts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.fee-notif-run-counts > div {
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: var(--input-bg);
+  min-width: 0;
+}
+
+.fee-notif-run-counts span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-dark-sub);
+  margin-bottom: 0.2rem;
+}
+
+.fee-notif-run-counts strong {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+}
+
+.fee-notif-run-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+}
+
+.fee-notif-run-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.fee-notif-run-table th,
+.fee-notif-run-table td {
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+  white-space: nowrap;
+}
+
+.fee-notif-run-table th {
+  background: var(--input-bg);
+  color: var(--text-dark-sub);
+  font-weight: 600;
+}
+
+.fee-notif-run-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 1100px) {
+  .fee-notif-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fee-notif-run-counts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .fee-notif-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fee-notif-settings-grid,
+  .fee-notif-automation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-notif-provider-card {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-notif-provider-badges {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .fee-notif-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-notif-run-counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fee-notif-tabs-row .fee-segment button {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .fee-notif-history-toolbar .fee-select {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,0 +1,384 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   HR Sidebar — single always-expanded navigation for the HR & Payroll
+   module. Shows both the ICON and the NAME for every item by default.
+
+   • .hr-side            → the sidebar itself (full width, icon + label)
+   • .hr-side-collapsed  → optional icon-only mode, toggled by the user
+                            via the header button (persisted locally)
+   • .hr-side-group      → accordion group for multi-page modules
+                            (Employees, Attendance, Payroll)
+
+   🎨 THEME-AWARE: every --hr-sb-* variable below maps to the app's global
+   design tokens (defined in src/index.css under :root and
+   :root[data-theme="midnight-blue"]), so this sidebar automatically
+   matches whichever theme is active with no separate dark-mode CSS.
+═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --hr-side-width: 258px;
+  --hr-side-width-collapsed: 76px;
+}
+
+/* ── Overall layout shell (sidebar + routed page content) ─────────────── */
+.hr-layout {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--hr-sb-page-bg, var(--home-bg));
+}
+
+.hr-layout-content {
+  flex: 1 1 auto;
+  min-width: 0; /* allow inner tables/content to shrink instead of overflowing */
+}
+
+/* ┌─────────────────────────────────────────────────────────────────────┐
+   │  🎨 COLOR PALETTE — mapped to the global theme tokens                │
+   └─────────────────────────────────────────────────────────────────────┘ */
+.hr-side {
+  --hr-sb-bg:              var(--card-bg);
+  --hr-sb-page-bg:         var(--home-bg);
+  --hr-sb-border:          var(--input-border);
+  --hr-sb-hover-bg:        var(--input-bg);
+
+  --hr-sb-text:            var(--text-dark-sub);
+  --hr-sb-text-strong:     var(--text-dark);
+  --hr-sb-text-muted:      var(--text-muted);
+
+  --hr-sb-accent:          var(--accent);
+  --hr-sb-accent-bright:   var(--accent-bright);
+  --hr-sb-accent-soft:     rgba(37, 99, 235, 0.08);
+  --hr-sb-logo-grad-start: #2563eb;
+  --hr-sb-logo-grad-end:   #7c3aed;
+
+  --hr-sb-scrollbar:       var(--input-border);
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  flex: 0 0 var(--hr-side-width);
+  width: var(--hr-side-width);
+  background: var(--hr-sb-bg);
+  border-right: 1px solid var(--hr-sb-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  transition: width 0.24s cubic-bezier(0.4, 0, 0.2, 1), flex-basis 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.hr-side-collapsed {
+  flex-basis: var(--hr-side-width-collapsed);
+  width: var(--hr-side-width-collapsed);
+}
+
+/* ── Header: brand + collapse toggle ─────────────────────────────────── */
+.hr-side-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1.1rem 1rem;
+  border-bottom: 1px solid var(--hr-sb-border);
+  flex-shrink: 0;
+}
+
+.hr-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.hr-side-brand-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  /* Same gradient + shadow as .sidebar-brand-icon on the main Home page
+     (src/index.css) — reusing the shared --steel-light/--accent-bright
+     theme tokens (instead of this file's old --hr-sb-logo-grad-* pair)
+     is what keeps the two logos visually identical across every theme. */
+  background: linear-gradient(135deg, var(--steel-light), var(--accent-bright));
+  box-shadow: 0 4px 16px rgba(29, 111, 191, 0.4);
+  transition: transform var(--transition, 0.15s ease);
+}
+.hr-side-brand:hover .hr-side-brand-icon {
+  transform: scale(1.05);
+}
+
+.hr-side-brand-text {
+  min-width: 0;
+  overflow: hidden;
+}
+.hr-side-brand-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--hr-sb-text-strong);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.hr-side-brand-sub {
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--hr-sb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.hr-side-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--hr-sb-border);
+  background: var(--hr-sb-hover-bg);
+  color: var(--hr-sb-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition, 0.15s ease);
+}
+.hr-side-toggle:hover {
+  background: var(--hr-sb-accent-soft);
+  color: var(--hr-sb-accent);
+}
+.hr-side-collapsed .hr-side-toggle {
+  transform: rotate(180deg);
+}
+
+/* ── Navigation ───────────────────────────────────────────────────────── */
+.hr-side-nav {
+  flex: 1;
+  padding: 0.75rem 0.6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.hr-side-nav::-webkit-scrollbar { width: 6px; }
+.hr-side-nav::-webkit-scrollbar-thumb {
+  background: var(--hr-sb-scrollbar);
+  border-radius: 999px;
+}
+
+.hr-side-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 9px;
+  border: none;
+  background: none;
+  color: var(--hr-sb-text);
+  font-size: 0.87rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transition, 0.15s ease), color var(--transition, 0.15s ease);
+}
+.hr-side-link:hover {
+  background: var(--hr-sb-hover-bg);
+  color: var(--hr-sb-text-strong);
+}
+.hr-side-link-active {
+  background: var(--hr-sb-accent-soft);
+  color: var(--hr-sb-accent);
+}
+.hr-side-link-active:hover {
+  color: var(--hr-sb-accent-bright);
+}
+
+.hr-side-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+}
+
+.hr-side-link-label {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* .hr-side-group-trigger is a <button>, which the browser's UA
+     stylesheet centers text in by default — <Link> anchors have no such
+     default, so without this the dropdown items' labels (Employees,
+     Attendance, Payroll, Sessions & Activity) sit visibly further right
+     than the plain-link items, even though both start from the same
+     icon position. */
+  text-align: left;
+}
+
+.hr-side-collapsed .hr-side-link {
+  justify-content: center;
+  padding: 0.65rem;
+}
+
+/* ── Accordion group (Employees / Attendance / Payroll) ────────────────── */
+/* At rest (collapsed dropdown) this must sit in the same 2px nav rhythm as
+   a plain .hr-side-link — it's a <div> wrapping the trigger <button>
+   (and, only when open, the submenu), so it needs the same zero-margin,
+   block-level box as a single-link item to avoid reading as "extra space"
+   next to Departments/Branches/Companies/Reports. */
+.hr-side-group {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hr-side-group-trigger {
+  justify-content: flex-start;
+}
+
+.hr-side-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--hr-sb-text-muted);
+  transition: transform 0.2s ease;
+}
+.hr-side-chevron-open {
+  transform: rotate(180deg);
+  color: currentColor;
+}
+
+.hr-side-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  /* Nudged in from 2.35rem so the open submenu reads as stepping forward
+     out from under its trigger, rather than sitting flush beneath it. */
+  padding: 0.2rem 0 0.35rem 2.6rem;
+  animation: hrSubmenuIn 0.18s ease both;
+}
+
+@keyframes hrSubmenuIn {
+  from { opacity: 0; transform: translate(-4px, -4px); }
+  to   { opacity: 1; transform: translate(0, 0); }
+}
+
+.hr-side-sublink {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--hr-sb-text);
+  border-left: 2px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--transition, 0.15s ease), color var(--transition, 0.15s ease),
+    border-color var(--transition, 0.15s ease);
+}
+.hr-side-sublink:hover {
+  background: var(--hr-sb-hover-bg);
+  color: var(--hr-sb-text-strong);
+}
+.hr-side-sublink-active {
+  background: var(--hr-sb-accent-soft);
+  color: var(--hr-sb-accent);
+  border-left-color: var(--hr-sb-accent);
+  font-weight: 600;
+}
+.hr-side-sublink-active:hover {
+  color: var(--hr-sb-accent-bright);
+}
+
+/* ── Dark theme (Midnight Blue) overrides ──────────────────────────────
+   Only the handful of sidebar-only accents that don't have a direct
+   global-token equivalent need their own dark values here. Everything
+   else above already flips automatically via var(--card-bg) etc. */
+:root[data-theme="midnight-blue"] .hr-side {
+  --hr-sb-accent-soft:     rgba(59, 130, 246, 0.16);
+  --hr-sb-logo-grad-start: #3b82f6;
+  --hr-sb-logo-grad-end:   #8b5cf6;
+}
+
+/* ── Responsive: auto-collapse on narrower viewports ───────────────────── */
+@media (max-width: 1024px) {
+  .hr-side:not(.hr-side-collapsed) {
+    position: fixed;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.12);
+  }
+}
+/* ── Nested accordion (Leave, one step inside Attendance) ───────────────
+   Reuses .hr-side-sublink for the trigger's base look (padding, size,
+   color, hover/active states) and just adds the flex layout needed for
+   its own chevron; the flyout list one level further in gets its own
+   smaller sublink style so it reads as a step deeper than Attendance's
+   own submenu. */
+.hr-side-subgroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.hr-side-subgroup-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: none;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.hr-side-sublink-label {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.hr-side-chevron-sm svg {
+  width: 13px;
+  height: 13px;
+}
+
+.hr-side-subsubmenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.15rem 0 0.3rem 1rem;
+  animation: hrSubmenuIn 0.18s ease both;
+}
+
+.hr-side-subsublink {
+  display: block;
+  padding: 0.42rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--hr-sb-text-muted);
+  border-left: 2px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--transition, 0.15s ease), color var(--transition, 0.15s ease),
+    border-color var(--transition, 0.15s ease);
+}
+.hr-side-subsublink:hover {
+  background: var(--hr-sb-hover-bg);
+  color: var(--hr-sb-text-strong);
+}
+.hr-side-subsublink-active {
+  background: var(--hr-sb-accent-soft);
+  color: var(--hr-sb-accent);
+  border-left-color: var(--hr-sb-accent);
+  font-weight: 600;
+}
+.hr-side-subsublink-active:hover {
+  color: var(--hr-sb-accent-bright);
+}

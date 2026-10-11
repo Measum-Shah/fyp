@@ -1,0 +1,261 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   HR Dashboard — Stylesheet
+   Every token below (colors, radii, shadows) reuses the app-wide :root design
+   system from src/index.css — same as employee-module.css — so the dashboard
+   looks native to the rest of the app in both the Corporate Trust and
+   Midnight Blue themes without adding a single new color token.
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Welcome / intro strip ───────────────────────────────────────────────── */
+.hr-dashboard-intro {
+  font-size: 0.88rem;
+  color: var(--text-dark-sub);
+  max-width: 780px;
+  line-height: 1.55;
+  margin: -0.5rem 0 1.5rem;
+}
+
+/* ─── Two-widget grid (CNIC Expiry + Gross Salary) ───────────────────────── */
+.hr-dashboard-widget-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+@media (max-width: 900px) {
+  .hr-dashboard-widget-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Summary cards grid ──────────────────────────────────────────────────── */
+.hr-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+@media (max-width: 1100px) {
+  .hr-dashboard-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .hr-dashboard-stats { grid-template-columns: 1fr; }
+}
+
+.hr-dashboard-stat-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.hr-dashboard-stat-value-loading {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+  background: var(--input-bg);
+  animation: hrPulse 1.4s ease-in-out infinite;
+}
+@keyframes hrPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ─── Birthday Widget ─────────────────────────────────────────────────────── */
+.hr-birthday-widget {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hr-birthday-widget-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.hr-birthday-widget-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.hr-birthday-widget-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 162, 39, 0.12);
+  color: var(--gold);
+}
+
+.hr-birthday-widget-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.hr-birthday-widget-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0.15rem 0 0;
+}
+
+.hr-birthday-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  max-height: 420px;
+  overflow-y: auto;
+}
+@media (max-width: 860px) {
+  .hr-birthday-list { grid-template-columns: 1fr; }
+}
+
+.hr-birthday-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: var(--input-bg);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.hr-birthday-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--stat-hover-shadow);
+  border-color: transparent;
+}
+.hr-birthday-row-today {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.08);
+}
+
+.hr-birthday-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+.hr-birthday-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hr-birthday-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+.hr-birthday-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hr-birthday-date {
+  font-size: 0.74rem;
+  color: var(--text-dark-sub);
+  margin-top: 0.1rem;
+}
+
+.hr-birthday-badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--text-dark-sub);
+  white-space: nowrap;
+  border: 1px solid var(--card-border);
+}
+.hr-birthday-badge-today {
+  background: rgba(201, 162, 39, 0.16);
+  color: var(--gold);
+  border-color: transparent;
+}
+
+.hr-birthday-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.hr-birthday-state-error .hr-state-icon {
+  color: var(--error);
+  margin-bottom: 0.6rem;
+}
+.hr-birthday-state .hr-state-message a {
+  color: var(--accent);
+  font-weight: 600;
+}
+.hr-birthday-state .hr-btn { margin-top: 0.85rem; }
+
+.hr-birthday-view-all {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.hr-birthday-view-all:hover { text-decoration: underline; }
+
+/* ─── "More HR features coming soon" placeholder panel ────────────────────── */
+.hr-dashboard-future {
+  background: var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  text-align: center;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hr-dashboard-future-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(29, 111, 191, 0.1);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.85rem;
+}
+.hr-dashboard-future-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.35rem;
+}
+.hr-dashboard-future-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.5;
+}

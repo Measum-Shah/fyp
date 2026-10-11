@@ -1,0 +1,18 @@
+node_modules/
+
+# Keep environment variables out of version control
+.env
+.env.*
+
+# Build directories
+dist/
+build/
+
+# Logs
+*.log
+
+# Prisma generated client (auto-generated, do not commit)
+src/generated/
+
+# OS files
+.DS_Store

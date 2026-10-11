@@ -1,0 +1,26 @@
+import API from "../../../../api/api";
+
+export const StudentAPI = {
+  getDashboard: () => API.get("/academic/student-portal/dashboard"),
+  getCourses: () => API.get("/academic/student-portal/academics/courses"),
+  getResults: () => API.get("/academic/student-portal/academics/results"),
+  getCGPA: () => API.get("/academic/student-portal/academics/cgpa"),
+  getGradebook: () => API.get("/academic/student-portal/academics/gradebook"),
+  getTranscript: () => API.get("/academic/student-portal/academics/transcript"),
+  getTimetable: () => API.get("/academic/student-portal/timetable/schedule"),
+  getAttendance: () => API.get("/academic/student-portal/timetable/attendance"),
+  getFeeDashboard: () => API.get("/academic/student-portal/fee/dashboard"),
+  getAssignments: () => API.get("/academic/student-portal/assignments"),
+  submitAssignment: (assignment_id: number, data: any) => API.post("/academic/student-portal/assignments/submit", { assignment_id, ...data }),
+  getMaterials: (course_id?: string) => API.get(`/academic/student-portal/assignments/materials${course_id ? '?course_id='+course_id : ''}`),
+  getQuizzes: () => API.get("/academic/student-portal/assignments/quizzes"),
+  getNotifications: () => API.get("/academic/student-portal/notifications"),
+  markNotificationRead: (id: number) => API.put(`/academic/student-portal/notifications/${id}/read`),
+  markAllNotificationsRead: () => API.put("/academic/student-portal/notifications/read-all"),
+  getProfile: () => API.get("/academic/student-portal/settings/profile"),
+  updateProfile: (data: any) => API.put("/academic/student-portal/settings/profile", data),
+  getAvailableCourses: () => API.get("/academic/student-portal/enrollment/courses/available"),
+  registerCourse: (course_id: number) => API.post("/academic/student-portal/enrollment/register", { course_id }),
+  getEnrollmentStatus: () => API.get("/academic/student-portal/enrollment/status"),
+  getReportsProgress: () => API.get("/academic/student-portal/reports/academic-progress"),
+};

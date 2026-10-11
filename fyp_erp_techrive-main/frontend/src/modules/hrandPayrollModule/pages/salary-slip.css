@@ -1,0 +1,148 @@
+/* ─── Bulk Salary Slip print styles ───────────────────────────────────────
+   Scoped under .salary-slip-print so it never leaks into other report
+   pages. Slips are hidden entirely on screen except inside the dedicated
+   print preview area; @media print hides everything else on the page
+   (filters, buttons, nav) so only the slips themselves come out of the
+   printer, one per page. */
+
+.salary-slip-sheet {
+  background: #fff;
+  border: 1px solid var(--border, #e2e2e2);
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 760px;
+}
+
+.salary-slip-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--accent, #1d6fbf);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.salary-slip-company {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.salary-slip-branch {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+}
+
+.salary-slip-period {
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+}
+
+.salary-slip-period strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.salary-slip-employee-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem 1.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.salary-slip-employee-grid dt {
+  color: var(--text-secondary, #666);
+  display: inline;
+}
+
+.salary-slip-employee-grid dd {
+  display: inline;
+  margin: 0 0 0 0.35rem;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.salary-slip-table-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.salary-slip-line-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.salary-slip-line-table caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: 0.4rem;
+  color: var(--text-primary, #1a1a1a);
+}
+
+.salary-slip-line-table td {
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--border, #e2e2e2);
+}
+
+.salary-slip-line-table td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.salary-slip-net-row {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--accent, #1d6fbf);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 700;
+}
+
+.salary-slip-net-row .amount {
+  font-size: 1.15rem;
+  color: var(--accent, #1d6fbf);
+}
+
+.salary-slip-select-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border, #eee);
+}
+
+.salary-slip-select-row:last-child {
+  border-bottom: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .salary-slip-print-area,
+  .salary-slip-print-area * {
+    visibility: visible;
+  }
+  .salary-slip-print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .salary-slip-sheet {
+    border: none;
+    border-radius: 0;
+    page-break-after: always;
+    margin-bottom: 0;
+  }
+  .salary-slip-sheet:last-child {
+    page-break-after: auto;
+  }
+}

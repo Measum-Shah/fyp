@@ -1,0 +1,285 @@
+/* Fee Management sidebar submenu — visual polish only (scoped to Fee page).
+   Every selector below is namespaced to a `fee-` class that exists only on the
+   Fee Management page, so no other module's navigation is affected. */
+
+.fee-sidebar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Parent "Fee Management" entry — heading treatment for hierarchy.
+   Scoped to the Fee group only; the shared .sidebar-link rules are untouched. */
+.fee-sidebar-group > .sidebar-link {
+  letter-spacing: 0.015em;
+  font-weight: 650;
+}
+
+.fee-sidebar-subnav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0.3rem 0.5rem 0.55rem 0.95rem;
+  padding: 0.45rem 0.35rem 0.5rem 0.5rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.012) 100%
+  );
+}
+
+.fee-sidebar-sublink {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  padding: 0.42rem 0.6rem 0.42rem 0.55rem;
+  border-radius: 9px;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+/* Icon chip — the distinct Fee Management signature for this submenu */
+.fee-sidebar-sublink-icon {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  color: inherit;
+  transition: background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+}
+
+.fee-sidebar-sublink-icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.fee-sidebar-sublink-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fee-sidebar-sublink::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent-bright, #3b9eff);
+  transition: height 0.18s ease, width 0.18s ease;
+}
+
+.fee-sidebar-sublink:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.fee-sidebar-sublink:hover .fee-sidebar-sublink-icon {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.fee-sidebar-sublink:hover::before {
+  width: 3px;
+  height: 55%;
+  opacity: 0.55;
+}
+
+.fee-sidebar-sublink:focus-visible {
+  outline: 2px solid rgba(59, 158, 255, 0.45);
+  outline-offset: 1px;
+}
+
+.fee-sidebar-sublink-active {
+  color: var(--text-white);
+  background: rgba(29, 111, 191, 0.22);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(59, 158, 255, 0.18);
+}
+
+.fee-sidebar-sublink-active .fee-sidebar-sublink-icon {
+  background: rgba(59, 158, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(59, 158, 255, 0.35);
+  color: var(--accent-bright, #3b9eff);
+}
+
+.fee-sidebar-sublink-active::before {
+  width: 3px;
+  height: 70%;
+  opacity: 1;
+}
+
+.fee-sidebar-sublink-active:hover {
+  background: rgba(29, 111, 191, 0.28);
+  color: var(--text-white);
+}
+
+/* Back to ERP — separated from the module items by its own divider */
+.fee-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fee-sidebar-back {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  padding: 0.5rem 0.7rem;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.fee-sidebar-back-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.fee-sidebar-back-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fee-sidebar-back:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(59, 158, 255, 0.32);
+  color: var(--text-white);
+}
+
+.fee-sidebar-back:focus-visible {
+  outline: 2px solid rgba(59, 158, 255, 0.45);
+  outline-offset: 1px;
+}
+
+.sidebar-collapsed .fee-sidebar-back {
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+/* Corporate Trust theme adjustments */
+:root[data-theme="corporate-trust"] .fee-sidebar-subnav {
+  border-left-color: rgba(15, 76, 129, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 76, 129, 0.05) 0%,
+    rgba(15, 76, 129, 0.02) 100%
+  );
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink {
+  color: var(--text-dark-sub);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink-icon {
+  background: rgba(15, 76, 129, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(15, 76, 129, 0.08);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink:hover {
+  color: var(--text-dark);
+  background: rgba(15, 76, 129, 0.07);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink:hover .fee-sidebar-sublink-icon {
+  background: rgba(15, 76, 129, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(15, 76, 129, 0.16);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink::before {
+  background: var(--accent, #0f4c81);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink-active {
+  color: var(--accent, #0f4c81);
+  background: rgba(15, 76, 129, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(15, 76, 129, 0.14);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink-active .fee-sidebar-sublink-icon {
+  background: rgba(15, 76, 129, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(15, 76, 129, 0.24);
+  color: var(--accent, #0f4c81);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-sublink-active:hover {
+  background: rgba(15, 76, 129, 0.16);
+  color: var(--accent, #0f4c81);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-back {
+  background: rgba(15, 76, 129, 0.05);
+  border-color: rgba(15, 76, 129, 0.14);
+  color: var(--text-dark-sub);
+}
+
+:root[data-theme="corporate-trust"] .fee-sidebar-back:hover {
+  background: rgba(15, 76, 129, 0.1);
+  border-color: rgba(15, 76, 129, 0.3);
+  color: var(--accent, #0f4c81);
+}
+
+.sidebar-collapsed .fee-sidebar-subnav {
+  display: none;
+}
+
+/* Smaller screens — keep labels readable in a tighter sidebar */
+@media (max-width: 1100px) {
+  .fee-sidebar-subnav {
+    margin-left: 0.7rem;
+    padding-right: 0.25rem;
+  }
+
+  .fee-sidebar-sublink {
+    font-size: 0.78rem;
+    gap: 0.45rem;
+    padding: 0.4rem 0.45rem 0.4rem 0.5rem;
+  }
+
+  .fee-sidebar-sublink-icon {
+    width: 22px;
+    height: 22px;
+  }
+}

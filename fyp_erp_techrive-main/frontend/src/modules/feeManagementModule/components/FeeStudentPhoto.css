@@ -1,0 +1,31 @@
+/* Passport-size student photo — Fee Management display only */
+
+.fee-student-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.fee-student-photo {
+  width: 72px;
+  height: 96px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 4px;
+  border: 1px solid var(--card-border, #d0d7de);
+  background: var(--input-bg, #f6f8fa);
+  flex-shrink: 0;
+}
+
+.fee-student-photo--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.35rem;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  color: var(--text-dark-sub, #6b7280);
+  box-sizing: border-box;
+}

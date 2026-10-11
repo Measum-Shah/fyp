@@ -1,0 +1,26 @@
+# Root level gitignore for the project
+fyp_erp_techrive-main/backend/src/generated/
+fyp_erp_techrive-main/backend/node_modules/
+fyp_erp_techrive-main/frontend/node_modules/
+fyp_erp_techrive-main/backend/.env
+fyp_erp_techrive-main/backend/.env.*
+fyp_erp_techrive-main/frontend/dist/
+fyp_erp_techrive-main/backend/dist/
+*.log
+.DS_Store
+
+desktop.ini
+node_modules/
+dist/
+
+# Test scripts and DB dumps
+*.sql
+!fyp_erp_techrive-main/fyp_erp_postgresql (2).sql
+!fyp_erp_techrive-main/fee-module-5-seed.sql
+!fyp_erp_techrive-main/fee-module-6-seed.sql
+!fyp_erp_techrive-main/fee-module-7-seed.sql
+!fyp_erp_techrive-main/fee-module-8-seed.sql
+!fyp_erp_techrive-main/student-enrollment-seed.sql
+*_schema.prisma
+test*.js
+test*.ts

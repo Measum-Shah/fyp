@@ -1,0 +1,483 @@
+/* Isolated styles for Student Enrollment page only */
+
+.se-page {
+  padding: 1.25rem 1.5rem 2rem;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.se-header {
+  margin-bottom: 1.5rem;
+}
+
+.se-title {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-dark, #1a2332);
+  letter-spacing: -0.01em;
+}
+
+.se-subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-dark-sub, #5a6a7a);
+  line-height: 1.45;
+  max-width: 46rem;
+}
+
+.se-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--card-border, rgba(15, 76, 129, 0.12));
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem 1.4rem;
+  box-shadow: 0 1px 2px rgba(15, 40, 70, 0.04);
+}
+
+.se-form-card {
+  width: 100%;
+}
+
+.se-recent-card {
+  margin-top: 1.25rem;
+}
+
+.se-card-title {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark, #1a2332);
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--card-border, rgba(15, 76, 129, 0.1));
+}
+
+.se-section {
+  margin-bottom: 1.35rem;
+}
+
+.se-section:last-child {
+  margin-bottom: 0;
+}
+
+.se-section-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent, #0f4c81);
+}
+
+.se-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+}
+
+.se-fields.se-fields-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .se-fields.se-fields-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .se-fields,
+  .se-fields.se-fields-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.se-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.se-field.se-span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 720px) {
+  .se-field.se-span-2 {
+    grid-column: span 1;
+  }
+}
+
+.se-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dark-sub, #4a5a6a);
+}
+
+.se-label .se-req {
+  color: #c0392b;
+  margin-left: 0.15rem;
+}
+
+.se-input,
+.se-select,
+.se-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text-dark, #1a2332);
+  background: var(--input-bg, #f7f9fc);
+  border: 1px solid var(--input-border, rgba(15, 76, 129, 0.18));
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.se-textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.se-input:focus,
+.se-select:focus,
+.se-textarea:focus {
+  border-color: var(--accent, #0f4c81);
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.12);
+}
+
+.se-input.se-invalid,
+.se-select.se-invalid,
+.se-textarea.se-invalid {
+  border-color: #c0392b;
+}
+
+.se-hint {
+  font-size: 0.72rem;
+  color: var(--text-dark-sub, #6a7a8a);
+}
+
+.se-error {
+  font-size: 0.75rem;
+  color: #c0392b;
+}
+
+.se-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border, rgba(15, 76, 129, 0.1));
+}
+
+.se-btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.se-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.se-btn-primary {
+  background: var(--accent, #0f4c81);
+  color: #fff;
+}
+
+.se-btn-primary:hover:not(:disabled) {
+  background: #0c3d68;
+}
+
+.se-btn-secondary {
+  background: var(--input-bg, #eef2f7);
+  color: var(--text-dark, #1a2332);
+  border: 1px solid var(--card-border, rgba(15, 76, 129, 0.14));
+}
+
+.se-btn-secondary:hover:not(:disabled) {
+  background: #e4ebf3;
+}
+
+.se-btn-verify {
+  background: #0d7a4f;
+  color: #fff;
+}
+
+.se-btn-verify:hover:not(:disabled) {
+  background: #0a6340;
+}
+
+.se-banner {
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.se-banner-success {
+  background: rgba(13, 122, 79, 0.1);
+  border: 1px solid rgba(13, 122, 79, 0.25);
+  color: #0a6340;
+}
+
+.se-banner-error {
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.22);
+  color: #922b21;
+}
+
+.se-banner-warn {
+  background: rgba(180, 120, 20, 0.1);
+  border: 1px solid rgba(180, 120, 20, 0.25);
+  color: #8a5a00;
+}
+
+.se-status-card {
+  margin-top: 1.25rem;
+}
+
+.se-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.se-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.se-pill-walkin {
+  background: rgba(180, 120, 20, 0.12);
+  color: #8a5a00;
+  border-color: rgba(180, 120, 20, 0.22);
+}
+
+.se-pill-registered {
+  background: rgba(13, 122, 79, 0.12);
+  color: #0a6340;
+  border-color: rgba(13, 122, 79, 0.22);
+}
+
+.se-pill-fee {
+  background: rgba(15, 76, 129, 0.1);
+  color: #0f4c81;
+  border-color: rgba(15, 76, 129, 0.18);
+}
+
+.se-meta {
+  display: grid;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+}
+
+.se-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed var(--card-border, rgba(15, 76, 129, 0.12));
+}
+
+.se-meta-row:last-child {
+  border-bottom: none;
+}
+
+.se-context-panel {
+  margin-top: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: rgba(15, 76, 129, 0.05);
+  border: 1px solid rgba(15, 76, 129, 0.12);
+}
+
+.se-context-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent, #0f4c81);
+  margin-bottom: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.se-context-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (max-width: 720px) {
+  .se-context-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.se-context-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.se-meta-key {
+  color: var(--text-dark-sub, #5a6a7a);
+  font-weight: 500;
+  font-size: 0.72rem;
+}
+
+.se-meta-val {
+  color: var(--text-dark, #1a2332);
+  font-weight: 600;
+  font-size: 0.86rem;
+}
+
+.se-meta .se-meta-key {
+  font-size: 0.86rem;
+}
+
+.se-meta .se-meta-val {
+  text-align: right;
+}
+
+.se-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+@media (max-width: 720px) {
+  .se-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.se-list-item {
+  text-align: left;
+  width: 100%;
+  border: 1px solid var(--card-border, rgba(15, 76, 129, 0.12));
+  background: var(--input-bg, #f7f9fc);
+  border-radius: 9px;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.se-list-item:hover,
+.se-list-item.se-list-item-active {
+  border-color: rgba(15, 76, 129, 0.35);
+  background: rgba(15, 76, 129, 0.06);
+}
+
+.se-list-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-dark, #1a2332);
+}
+
+.se-list-sub {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--text-dark-sub, #5a6a7a);
+}
+
+.se-empty {
+  padding: 1.25rem 0.5rem;
+  text-align: center;
+  color: var(--text-dark-sub, #5a6a7a);
+  font-size: 0.86rem;
+}
+
+.se-loading {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-dark-sub, #5a6a7a);
+}
+
+/* Passport-size photo upload (Student Enrollment only) */
+.se-photo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  align-items: flex-start;
+}
+
+.se-photo-preview {
+  width: 112px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--card-border, rgba(15, 76, 129, 0.16));
+  background: var(--input-bg, #f7f9fc);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.se-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.se-photo-placeholder {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-dark-sub, #6a7a8a);
+  line-height: 1.35;
+}
+
+.se-photo-controls {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.se-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.se-photo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.se-btn-file {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0;
+}

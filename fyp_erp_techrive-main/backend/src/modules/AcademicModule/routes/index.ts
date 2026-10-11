@@ -1,0 +1,60 @@
+import { Router } from "express";
+import departmentRoutes from "./department.routes";
+import programRoutes from "./program.routes";
+import majorRoutes from "./major.routes";
+import minorRoutes from "./minor.routes";
+import courseRoutes from "./course.routes";
+import curriculumRoutes from "./curriculum.routes";
+import curriculumVersionRoutes from "./curriculumVersion.routes";
+import prerequisiteRoutes from "./prerequisite.routes";
+import lmsRoutes from "./lms.routes";
+import enrollmentRoutes from "./enrollment.routes";
+import dashboardRoutes from "./dashboard.routes";
+import reportRoutes from "./report.routes";
+import branchRoutes from "./branch.routes";
+import alumniRoutes from "./alumni.routes";
+import resultRoutes from "./result.routes";
+import lookupRoutes from "./lookup.routes";
+import notificationRoutes from "./notification.routes";
+import studentEnrollmentRoutes from "./studentEnrollment.routes";
+import teacherDashboardRoutes from "../TeacherPortal/routes/teacherDashboard.routes";
+import teacherEnrollmentRoutes from "../TeacherPortal/routes/teacherEnrollment.routes";
+import studentPortalRoutes from "../StudentPortal/routes/index";
+import timetableAdminRoutes from "./timetableAdmin.routes";
+import calendarRoutes from "./calendar.routes";
+import roomsRoutes from "./rooms.routes";
+import promotionRoutes from "./promotion.routes";
+import fineRoutes from "./fine.routes";
+
+const router = Router();
+
+router.use("/departments", departmentRoutes);
+router.use("/programs", programRoutes);
+router.use("/majors", majorRoutes);
+router.use("/minors", minorRoutes);
+router.use("/courses", courseRoutes);
+router.use("/curriculums", curriculumRoutes);
+router.use("/curriculum-versions", curriculumVersionRoutes);
+router.use("/prerequisites", prerequisiteRoutes);
+router.use("/lms", lmsRoutes);
+router.use("/enrollment", enrollmentRoutes);
+router.use("/dashboard", dashboardRoutes);
+router.use("/reports", reportRoutes);
+router.use("/branches", branchRoutes);
+router.use("/notifications", notificationRoutes);
+router.use("/student-enrollment", studentEnrollmentRoutes);
+router.use("/timetable", timetableAdminRoutes);
+router.use("/calendar", calendarRoutes);
+router.use("/rooms", roomsRoutes);
+router.use("/promotion", promotionRoutes);
+router.use("/alumni", alumniRoutes);
+router.use("/results", resultRoutes);
+router.use("/lookups", lookupRoutes);
+router.use("/fines", fineRoutes);
+
+router.use("/teacher-dashboard", teacherDashboardRoutes);
+router.use("/teacher-enrollment", teacherEnrollmentRoutes);
+
+router.use("/student-portal", studentPortalRoutes);
+
+export default router;

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2022"],
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+
+    "resolveJsonModule": true,
+
+    "types": ["node", "multer"]
+  },
+
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "src/generated"]
+}

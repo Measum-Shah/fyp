@@ -1,0 +1,1 @@
+import 'dotenv/config'; import { prisma } from './src/config/db'; prisma.$executeRawUnsafe('ALTER TABLE lms_materials ALTER COLUMN file_url TYPE TEXT;').then(() => console.log('Done')).catch(console.error).finally(() => prisma.$disconnect());

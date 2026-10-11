@@ -1,0 +1,246 @@
+/* Module 7 — Reporting & Analytics (scoped presentation) */
+
+.fee-report-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fee-report-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fee-report-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.fee-report-title-row h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-report-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(29, 111, 191, 0.14), rgba(29, 111, 191, 0.04));
+  border: 1px solid rgba(29, 111, 191, 0.18);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.fee-report-desc {
+  margin: 0;
+  color: var(--text-dark-sub);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  max-width: 52rem;
+}
+
+.fee-report-tabs-row {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+}
+
+.fee-report-tabs-row .fee-segment {
+  min-width: max-content;
+}
+
+.fee-report-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.fee-report-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(160deg, rgba(29, 111, 191, 0.07), transparent 65%), var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.fee-report-stat-value {
+  font-size: 1.35rem;
+  font-weight: 750;
+  line-height: 1.15;
+  color: var(--text-dark);
+  word-break: break-word;
+}
+
+.fee-report-stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dark-sub);
+}
+
+.fee-report-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.65rem;
+  align-items: end;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+}
+
+.fee-report-filters .fee-field {
+  margin: 0;
+}
+
+.fee-report-filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+.fee-report-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.fee-report-chart-card {
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--input-bg);
+}
+
+.fee-report-chart-card h4 {
+  margin: 0 0 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.fee-report-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fee-report-bar-row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr auto;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.fee-report-bar-label {
+  font-size: 0.78rem;
+  color: var(--text-dark-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fee-report-bar-track {
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+}
+
+.fee-report-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+  min-width: 2px;
+}
+
+.fee-report-bar-value {
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+
+.fee-report-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fee-report-toolbar-left,
+.fee-report-toolbar-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.fee-report-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-dark-sub);
+}
+
+@media (max-width: 1100px) {
+  .fee-report-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .fee-report-chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .fee-report-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-report-bar-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .fee-report-pagination {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+@media print {
+  .fee-report-filters,
+  .fee-report-toolbar,
+  .fee-segment,
+  .fee-report-tabs-row {
+    display: none !important;
+  }
+
+  .fee-panel {
+    box-shadow: none;
+    border: none;
+  }
+}
